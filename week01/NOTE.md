@@ -8,7 +8,8 @@
 
 无序:dict set
 
-#1.int整型
+1.int整型
+-
 In [2]: num=1
 
 In [3]: print(num)
@@ -17,56 +18,73 @@ In [5]: type(num)
 
 Out[5]: int
 
-#2.str(字符串)
+2.str(字符串)
+-
 
 In [7]: astr="123456"
-#打印astr变量
+
+打印astr变量
+-
 In [8]: print(astr)
 
 123456
-#查看数据类型为字符
+
+查看数据类型为字符
+-
 In [9]: type(astr)
 
 Out[9]: str
-#切片
+切片
+-
 In [10]: astr[0:]
 
 Out[10]: '123456'
-#切片从下标0到第1个字符
+切片从下标0到第1个字符
+-
 In [11]: astr[0:1]
 
 Out[11]: '1'
-#切片从下标0到第2个字符
+
+切片从下标0到第2个字符
+-
 In [12]: astr[0:2]
 
 Out[12]: '12'
-#切片反向排序
+
+切片反向排序
+-
 In [15]: astr[-1::-1]
 
 Out[15]: '654321'
-#切片步长为2
+切片步长为2
+-
 In [18]: astr[0::2]
 
 Out[18]: '135'
-#查看字符长度
+查看字符长度
+-
 In [19]: len(astr)
 
 Out[19]: 6
 
-#3.list(列表)
+3.list(列表)
+-
 In [24]: alist=['a', 'b', 'c', 'd', 'e']
 
-#打印list
+打印list
+-
 In [25]: print(alist)
 
 ['a', 'b', 'c', 'd', 'e']
 
-#查看类型为list
+查看类型为list
+-
 In [26]: type(alist)
 
 Out[26]: list
 
-#遍历list
+遍历list
+-
 In [28]: for i in alist:
 
    ...:     print(i)
@@ -81,21 +99,24 @@ c
 d
 
 e
-#添加元素
+添加元素
+-
 In [29]: alist.append("f")
 
 In [30]: alist
 
 Out[30]: ['a', 'b', 'c', 'd', 'e', 'f']
 
-#扩展元素
+扩展元素
+-
 In [31]: alist.extend([1,2,3,4,5,6])
 
 In [33]: alist
 
 Out[33]: ['a', 'b', 'c', 'd', 'e', 'f', 1, 2, 3, 4, 5, 6]
 
-#插入元素
+插入元素
+-
 In [13]: alist.insert(0,"aa")
 
 In [14]: alist
@@ -108,7 +129,8 @@ In [16]: alist
 
 Out[16]: ['aa', 'a', 'bb', 'b', 'c', 'd', 'e', 'f', 1, 2, 3, 4, 5, 6]
 
-#修改元素
+修改元素
+-
 In [17]: alist[0]='aaa'
 
 In [18]: alist
@@ -122,8 +144,10 @@ In [20]: alist
 Out[20]: ['aaa', 'a', 'bb', 'bbb', 'c', 'd', 'e', 'f', 1, 2, 3, 4, 5, 6]
 
 
-#4.tuple
-#元组就是不变的list 不能添加元素
+4.tuple
+-
+元组就是不变的list 不能添加元素
+-
 In [36]: atuple=(1,2,3,4,5,6)
 
 In [37]: atuple
@@ -141,18 +165,24 @@ AttributeError                            Traceback (most recent call last)
 ----> 1 atuple.append('a')
 
 AttributeError: 'tuple' object has no attribute 'append'
-#5.dict(字典)
-
+5.dict(字典)
+-
 In [49]: adict = {"a":1, "b":2, "c":3}
-#查看类型为dict
+
+查看类型为dict
+-
 In [50]: type(adict)
 
 Out[50]: dict
-#打印dict
+
+打印dict
+-
 In [51]: print(adict)
 
 {'a': 1, 'b': 2, 'c': 3}
-#根据下标获取元素2
+
+根据下标获取元素2
+-
 In [53]: adict["a"]
 
 Out[53]: 1
@@ -182,7 +212,9 @@ In [60]: adict.values()
 Out[60]: dict_values([1, 2, 3])
 
 In [23]: adict = {"a":1, "b":2, "c":3}
-#字典key是不可变的 
+
+字典key是不可变的 
+-
 In [24]: adict[('a','b','c')]="aa"
 
 In [25]: adict
@@ -199,7 +231,8 @@ TypeError                                 Traceback (most recent call last)
 TypeError: unhashable type: 'list'
 
 
-#6.set集合
+6.set集合
+-
 
 In [65]: aset = set={1,3,2,1,3,2}
 
