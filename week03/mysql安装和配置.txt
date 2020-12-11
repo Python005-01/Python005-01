@@ -1,0 +1,81 @@
+1.配置清华源mysql安装yum配置文件
+rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+cat << EOF > /etc/yum.repos.d/mysql-community.repo
+[mysql]
+name=CentOS-$releasever - mysql
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql57-community-el7/
+enabled=1
+gpgcheck=0
+EOF
+
+2.安装mysql-server
+yum makecache
+yum -y install mysql-server
+
+3.修改配置文件中文字符集
+/etc/my.cnf
+[client] 
+default-character-set = utf8mb4
+[mysql] 
+default-character-set = utf8mb4
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+symbolic-links=0
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+character-set-client-handshake = FALSE 
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci 
+init_connect=’SET NAMES utf8mb4’
+
+4.启动mysql-server
+systemctl start mysqld
+
+5.查看默认密码，修改root密码
+查看默认密码
+grep 'temporary password' /var/log/mysqld.log
+
+-----修改密码
+mysql> set global validate_password_policy=0;
+Query OK, 0 rows affected (0.00 sec)
+mysql> set global validate_password_length=1;
+Query OK, 0 rows affected (0.00 sec)
+mysql> alter user 'root'@'localhost' identified by '123456';
+Query OK, 0 rows affected (0.00 sec)
+
+6.创建库
+mysql> create database testdb default character set utf8mb4 collate utf8mb4_unicode_ci;
+Query OK, 1 row affected (0.00 sec)
+7.权限赋权
+mysql> GRANT ALL PRIVILEGES ON testdb.* TO 'testuser'@'%' IDENTIFIED BY 'testpass' WITH GRANT OPTION;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+8.查看字符集
+mysql> show variables like '%char%';  
++--------------------------------------+----------------------------+
+| Variable_name                        | Value                      |
++--------------------------------------+----------------------------+
+| character_set_client                 | utf8mb4                    |
+| character_set_connection             | utf8mb4                    |
+| character_set_database               | utf8mb4                    |
+| character_set_filesystem             | binary                     |
+| character_set_results                | utf8mb4                    |
+| character_set_server                 | utf8mb4                    |
+| character_set_system                 | utf8                       |
+| character_sets_dir                   | /usr/share/mysql/charsets/ |
+| validate_password_special_char_count | 1                          |
++--------------------------------------+----------------------------+
+9 rows in set (1.93 sec)
+
+mysql> show variables like 'collation%'; 
++----------------------+--------------------+
+| Variable_name        | Value              |
++----------------------+--------------------+
+| collation_connection | utf8mb4_unicode_ci |
+| collation_database   | utf8mb4_unicode_ci |
+| collation_server     | utf8mb4_unicode_ci |
++----------------------+--------------------+
+3 rows in set (0.00 sec)
+
+
