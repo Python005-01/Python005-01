@@ -1,18 +1,16 @@
 django orm插入语句方法
 
-1.
-#进入shell终端
+1.进入shell终端
 
 python manager.py shell
-2.
-#导入库
+
+2.导入库
 
 from dpbooks.models import *
 
 import doupan
 
-3.
-#批量添加条目
+3.批量添加条目
 
 alist = doupan.inadd_db()
 
