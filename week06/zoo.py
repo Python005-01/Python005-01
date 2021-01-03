@@ -2,10 +2,8 @@ from abc import ABCMeta, abstractmethod
 # 动物园
 class Zoo(object):
     # 判断重复动物的list
-    try:
-        zoolist
-    except(AttributeError,NameError) as e:
-        zoolist=[]
+    zoolist=[]
+    
     # 实例化后添加类属性名(动物园名字)
     def __init__(self,zname):
         self.add_zooname(zname)
