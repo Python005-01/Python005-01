@@ -1,4 +1,4 @@
-
+from abc import ABCMeta, abstractmethod
 # 动物园
 class Zoo(object):
     # 判断重复动物的list
@@ -28,7 +28,7 @@ class Zoo(object):
             else:
                 setattr(Zoo, animal_str, func.__dict__)
                 cls.zoolist.append(ad['name'])
-class Animal(Zoo):
+class Animal(metaclass=ABCMeta):
     """
     shape_dict
     (0 1 2)
@@ -36,6 +36,7 @@ class Animal(Zoo):
     1 代表 中
     2 代表 大
     """
+
     def __init__(self, name, a_type, shape):
         shape_dict={'小':0,'中':1,'大':2}
         self.name = name
@@ -50,6 +51,12 @@ class Animal(Zoo):
         else:
             self.character = '温顺'
 
+    # 动物类Animal()不允许实例化
+    @abstractmethod
+    def _abc(self):
+        pass
+
+
 class Dog(Animal):
     jiaoshen = "汪汪汪"
 
@@ -59,6 +66,9 @@ class Dog(Animal):
             print("适合做宠物")
         else:
             print('不适合做宠物"')
+    # 覆盖Animal类_abc方法,不然实例化不了
+    def _abc(self):
+        pass
 
 class Cat(Animal):
 
@@ -74,6 +84,10 @@ class Cat(Animal):
             print("适合做宠物")
         else:
             print('不适合做宠物"')
+
+    # 覆盖Animal类_abc方法,不然实例化不了
+    def _abc(self):
+        pass
 
 if __name__ == '__main__':
     z = Zoo("时间动物园")
@@ -108,3 +122,5 @@ if __name__ == '__main__':
     z.add_animal('cat1', cat1)
     z.add_animal('cat5',cat1)
 
+    print("---------------动物类不允许实例后，实例后报错----------------")
+    animal = Animal()
