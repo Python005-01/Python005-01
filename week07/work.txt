@@ -1,0 +1,4 @@
+可变序列:list,dict
+不可变序列:tuple
+容器序列:list,dict,tuple,collections.deque
+扁平序列::str,
